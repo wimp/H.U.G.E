@@ -76,7 +76,7 @@ void renderScene(void) {
 		glVertex2f(xPos+75,yPos-20);*/
 	glEnd();
 
-	glRotatef(angle*0.1,0,0,0.5);
+	//glRotatef(angle*0.1,0,0,0.5);
 
 	if(xPos < 3200000)
 		xPos = xPos+0.5;
