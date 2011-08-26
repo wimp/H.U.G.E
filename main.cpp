@@ -4,6 +4,10 @@
 #include <stdlib.h>
 #include <math.h>
 
+using namespace std;
+
+#include <functions.h>
+
 void reshape(int w, int h) {
 
 	// Prevent a divide by zero, when window is too short
