@@ -7,7 +7,7 @@
 
 //using namespace std;
 
-Jeg har lyst til å teste diffgreia. Rediger denne linja uten å pulle først!
+Dette er en test! =)
  
 #include "functions.h"
 
