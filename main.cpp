@@ -6,6 +6,8 @@
 #include <math.h>
 
 //using namespace std;
+
+Jeg har lyst til å teste diffgreia. Rediger denne linja uten å pulle først!
  
 #include "functions.h"
 
