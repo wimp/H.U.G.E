@@ -1,12 +1,13 @@
 #include <Windows.h>
-#include <gl/glut.h>
+#include <GL/GL.h>
+#include <GL/glut.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 
-using namespace std;
+//using namespace std;
 
-#include <functions.h>
+#include "functions.h"
 
 void reshape(int w, int h) {
 
