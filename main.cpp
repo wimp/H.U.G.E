@@ -6,7 +6,7 @@
 #include <math.h>
 
 //using namespace std;
-
+ 
 #include "functions.h"
 
 void reshape(int w, int h) {
