@@ -6,6 +6,8 @@
 #include <math.h>
 
 //using namespace std;
+
+Dette er en test! =)
  
 #include "functions.h"
 
