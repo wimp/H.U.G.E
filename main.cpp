@@ -8,6 +8,7 @@ float yPos = 50.0;
 float road = 50.0;
 double angle = 0.0;
 
+
 void reshape(int w, int h) {
 
 	// Prevent a divide by zero, when window is too short
@@ -85,6 +86,65 @@ void renderScene(void) {
 	glutSwapBuffers();
 }
 
+void animate(int val){
+	glutTimerFunc(50,animate,0);
+
+	glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
+	glColor3f(1.0,0,0);
+	glBegin(GL_POINTS);
+		for(int i = 0;i < glutGet(GLUT_WINDOW_WIDTH);i++){
+			glVertex2f(i,6* sin(i*0.2)+(road-20));
+		}
+	glEnd();
+
+	glColor3f(0.5,1.0,0.0);
+	glBegin(GL_QUADS);
+		glVertex3f(xPos,yPos,0.0);
+		glVertex3f(xPos,yPos+20,0.0);
+		glVertex3f(xPos+97,yPos+20,0.0);
+		glVertex3f(xPos+97,yPos,0.0);
+	glEnd();
+
+	glBegin(GL_QUADS);
+		glVertex2f(xPos+57,yPos+20);
+		glVertex2f(xPos+57,yPos+42);
+		glVertex2f(xPos+67,yPos+42);
+		glVertex2f(xPos+75,yPos+20);
+	glEnd();
+
+	glColor3f(0.0,0.5,0.3);
+	int wheel1[] = {xPos+15,yPos-10,xPos+25,yPos,xPos+35,yPos-10,xPos+25,yPos-20}; 
+	glBegin(GL_QUADS);
+		for(int i = 0;i < 8;i+=2){
+			glVertex2f(wheel1[i],wheel1[i+1]);
+		}
+	glEnd();
+
+	int wheel2[] = {xPos+65,yPos-10,xPos+75,yPos,xPos+85,yPos-10,xPos+75,yPos-20};
+	glBegin(GL_QUADS);
+		for(int i = 0;i < 8;i+=2){
+			glVertex2f(wheel2[i],wheel2[i+1]);
+		}
+	glEnd();
+
+	int* circle = drawCircle(0.5,0.5);
+	
+
+	glBegin(GL_TRIANGLES);
+		for(int i = 0;i < 6; i+= 2){
+			glVertex2f(i,i+1);
+		}
+	glEnd();
+
+	//glRotatef(angle*0.1,0,0,0.5);
+
+	if(xPos < 32000)
+		xPos = xPos+0.5;
+		yPos += cos(angle);
+		angle += 0.1;
+	glutSwapBuffers();
+}
+
 void mouse(int a, int button, int x, int y){
 	switch(button){
 	case GLUT_LEFT_BUTTON:
@@ -104,10 +164,13 @@ void main(int argc, char **argv) {
 	glutInitWindowSize(320,320);
 	glutCreateWindow("Lighthouse3D- GLUT Tutorial");
 
+
+
 	// register callbacks
 	glutDisplayFunc(renderScene);
 	glutReshapeFunc(reshape);
-	glutIdleFunc(renderScene);
+	//glutIdleFunc(renderScene);
+	glutTimerFunc(50,animate,0);
 	glutMouseFunc(mouse);
 
 	// enter GLUT event processing cycle
