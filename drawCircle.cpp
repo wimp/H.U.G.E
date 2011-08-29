@@ -1,9 +1,9 @@
-<<<<<<< HEAD
-=======
-#include <Windows.h>
-#include <GL/gl.h>
+#include <GL/glut.h>
 
->>>>>>> 8ba1680f7179c4853e6d561916993acae74ad4a3
-void drawCircle(float radius, float centerPoint){
+int* drawCircle(float radius, float centerPoint){
+	/*int vertexX[] = {centerPoint,centerPoint+0.5,centerPoint};
+	int vertexY[] = {centerPoint+radius,centerPoint+radius,centerPoint};*/
+	int vertices[] = {centerPoint,centerPoint+radius,centerPoint+0.5,centerPoint+radius,centerPoint,centerPoint};
 
+	return vertices;
 }

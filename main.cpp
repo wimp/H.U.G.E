@@ -1,15 +1,12 @@
-#include <Windows.h>
-#include <GL/GL.h>
 #include <GL/glut.h>
-#include <stdio.h>
-#include <stdlib.h>
 #include <math.h>
-
-//using namespace std;
-
-Dette er en test! =)
  
 #include "functions.h"
+
+float xPos = 0.0;
+float yPos = 50.0;
+float road = 50.0;
+double angle = 0.0;
 
 void reshape(int w, int h) {
 
@@ -29,11 +26,6 @@ void reshape(int w, int h) {
 
 	gluOrtho2D(0.0,(GLdouble)w, 0.0, (GLdouble)h);
 }
-
-float xPos = 0.0;
-float yPos = 50.0;
-float road = 50.0;
-double angle = 0.0;
 
 void renderScene(void) {
 
@@ -66,10 +58,6 @@ void renderScene(void) {
 		for(int i = 0;i < 8;i+=2){
 			glVertex2f(wheel1[i],wheel1[i+1]);
 		}
-		/*glVertex2f(xPos+15,yPos-10);
-		glVertex2f(xPos+25,yPos);
-		glVertex2f(xPos+35,yPos-10);
-		glVertex2f(xPos+25,yPos-20);*/
 	glEnd();
 
 	int wheel2[] = {xPos+65,yPos-10,xPos+75,yPos,xPos+85,yPos-10,xPos+75,yPos-20};
@@ -77,19 +65,34 @@ void renderScene(void) {
 		for(int i = 0;i < 8;i+=2){
 			glVertex2f(wheel2[i],wheel2[i+1]);
 		}
-		/*glVertex2f(xPos+65,yPos-10);
-		glVertex2f(xPos+75,yPos);
-		glVertex2f(xPos+85,yPos-10);
-		glVertex2f(xPos+75,yPos-20);*/
+	glEnd();
+
+	int* circle = drawCircle(0.5,0.5);
+	
+
+	glBegin(GL_TRIANGLES);
+		for(int i = 0;i < 6; i+= 2){
+			glVertex2f(i,i+1);
+		}
 	glEnd();
 
 	//glRotatef(angle*0.1,0,0,0.5);
 
-	if(xPos < 3200000)
+	if(xPos < 32000)
 		xPos = xPos+0.5;
 		yPos += cos(angle);
 		angle += 0.1;
 	glutSwapBuffers();
+}
+
+void mouse(int a, int button, int x, int y){
+	switch(button){
+	case GLUT_LEFT_BUTTON:
+		xPos = x;
+		break;
+	default:
+		break;
+	}
 }
 
 void main(int argc, char **argv) {
@@ -105,6 +108,7 @@ void main(int argc, char **argv) {
 	glutDisplayFunc(renderScene);
 	glutReshapeFunc(reshape);
 	glutIdleFunc(renderScene);
+	glutMouseFunc(mouse);
 
 	// enter GLUT event processing cycle
 	glutMainLoop();

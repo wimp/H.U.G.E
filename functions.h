@@ -1,1 +1,1 @@
-void drawCircle(float radius, float centerPoint);
+int* drawCircle(float radius, float centerPoint);
