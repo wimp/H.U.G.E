@@ -8,6 +8,7 @@ float yPos = 50.0;
 float road = 50.0;
 double angle = 0.0;
 int DELAY = 15;
+int ms = 10;
 
 
 void reshape(int w, int h) {
@@ -89,6 +90,7 @@ void renderScene(void) {
 
 void animate(int val){
 	glutTimerFunc(DELAY,animate,0);
+	glutTimerFunc(ms,animate,0);
 
 	glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
 	glColor3f(1.0,0,0);
@@ -171,7 +173,8 @@ void main(int argc, char **argv) {
 	glutDisplayFunc(renderScene);
 	glutReshapeFunc(reshape);
 	//glutIdleFunc(renderScene);
-	glutTimerFunc(DELAY,animate,0);
+	//glutTimerFunc(DELAY,animate,0);
+	glutTimerFunc(ms,animate,0);
 	glutMouseFunc(mouse);
 
 	// enter GLUT event processing cycle
